@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eureca Daily Sales Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Eureca Daily Sales Tracker</h1>
+
+<div class="form">
+    <input type="text" id="product" placeholder="Product Name">
+    <input type="number" id="quantity" placeholder="Quantity">
+    <input type="number" id="price" placeholder="Price">
+
+    <button onclick="addSale()">Add Sale</button>
+</div>
+
+<h2>Sales List</h2>
+
+<h3>Total Sales Today: R<span id="totalSales">0</span></h3>
+
+<table id="salesTable">
+<tr>
+<th>Product</th>
+<th>Quantity</th>
+<th>Price</th>
+<th>Total</th>
+</tr>
+</table>
+
+<script src="script.js"></script>
+
+</body>
+</html>

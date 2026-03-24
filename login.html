@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>Login - Eureca Tracker</title>
+<title>Login</title>
 
 <style>
 
@@ -20,12 +20,6 @@ body{
     padding:20px;
     border-radius:10px;
     text-align:center;
-    box-shadow:0 0 10px black;
-
-}
-
-h2{
-    margin-bottom:20px;
 }
 
 input{
@@ -42,23 +36,14 @@ button{
     background:#0a3d62;
     color:white;
     border:none;
-    cursor:pointer;
-
 }
 
-button:hover{
-
-    background:#3c6382;
-
-}
-
-.forgot{
+.link{
 
     display:block;
     margin-top:10px;
-    color:#0a3d62;
     cursor:pointer;
-    font-size:14px;
+    color:#0a3d62;
 
 }
 
@@ -78,11 +63,16 @@ button:hover{
 
 <button onclick="login()">Login</button>
 
-<span class="forgot" onclick="forgot()">Forgot Password?</span>
+<span class="link" onclick="forgot()">Forgot Password</span>
+
+<span class="link" onclick="changePage()">Change Password</span>
 
 </div>
 
 <script>
+
+let savedPass =
+localStorage.getItem("pass") || "1234";
 
 function login(){
 
@@ -92,7 +82,7 @@ document.getElementById("user").value;
 let p =
 document.getElementById("pass").value;
 
-if(u=="admin" && p=="1234"){
+if(u=="admin" && p==savedPass){
 
 localStorage.setItem("login","true");
 
@@ -106,10 +96,15 @@ alert("Wrong login");
 
 }
 
-
 function forgot(){
 
-alert("Please contact admin to reset password");
+alert("Contact admin");
+
+}
+
+function changePage(){
+
+window.location="changePassword.html";
 
 }
 

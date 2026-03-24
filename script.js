@@ -1,16 +1,24 @@
-let totalSales = 0;
+let totalProfit = 0;
+let monthProfit = 0;
 
-let savedSales = JSON.parse(localStorage.getItem("sales")) || [];
+let savedSales =
+JSON.parse(localStorage.getItem("sales")) || [];
 
 let table;
 
 window.onload = function(){
 
-table = document.getElementById("salesTable");
+table =
+document.getElementById("salesTable");
 
 savedSales.forEach(s =>
-addRow(s.product, s.quantity, s.price)
-);
+addRow(
+s.product,
+s.quantity,
+s.cost,
+s.price,
+s.date
+));
 
 }
 
@@ -22,11 +30,21 @@ document.getElementById("product").value;
 let quantity =
 document.getElementById("quantity").value;
 
+let cost =
+document.getElementById("cost").value;
+
 let price =
 document.getElementById("price").value;
 
+let date =
+document.getElementById("date").value;
+
 savedSales.push({
-product, quantity, price
+product,
+quantity,
+cost,
+price,
+date
 });
 
 localStorage.setItem(
@@ -34,53 +52,51 @@ localStorage.setItem(
 JSON.stringify(savedSales)
 );
 
-addRow(product, quantity, price);
+addRow(
+product,
+quantity,
+cost,
+price,
+date
+);
+
+}
+function addRow(
+product,
+quantity,
+cost,
+price,
+date
+){
+
+let profit =
+(price - cost) * quantity;
+
+totalProfit += profit;
+
+let saleMonth =
+date.substring(0,7);
+
+let currentMonth =
+new Date().toISOString().substring(0,7);
+
+if(saleMonth == currentMonth){
+monthProfit += profit;
+}
+
+document.getElementById(
+"totalSales"
+).innerText = totalProfit;
+
+document.getElementById(
+"monthProfit"
+).innerText = monthProfit;
 
 }
 
-function addRow(product, quantity, price){
+function report(){
 
-let total = quantity * price;
-
-totalSales += total;
-
-document.getElementById(
-"totalSales"
-).innerText = totalSales;
-
-let row = table.insertRow();
-
-row.insertCell(0).innerHTML = product;
-row.insertCell(1).innerHTML = quantity;
-row.insertCell(2).innerHTML = price;
-row.insertCell(3).innerHTML = total;
-
-let btn =
-document.createElement("button");
-
-btn.innerText = "Delete";
-
-btn.onclick = function(){
-
-totalSales -= total;
-
-document.getElementById(
-"totalSales"
-).innerText = totalSales;
-
-savedSales.splice(
-row.rowIndex-1,1
-);
-
-localStorage.setItem(
-"sales",
-JSON.stringify(savedSales)
-);
-
-table.deleteRow(row.rowIndex);
-
-};
-
-row.insertCell(4).appendChild(btn);
+window.location =
+"report.html";
 
 }

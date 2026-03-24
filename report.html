@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Monthly Report</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f2f2;
+text-align:center;
+}
+
+table{
+margin:auto;
+border-collapse:collapse;
+width:60%;
+background:white;
+}
+
+th,td{
+border:1px solid black;
+padding:8px;
+}
+
+button{
+padding:10px;
+margin:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Monthly Profit Report</h2>
+
+<button onclick="back()">Back</button>
+
+<table id="reportTable">
+
+<tr>
+<th>Month</th>
+<th>Profit</th>
+</tr>
+
+</table>
+
+<script>
+
+let sales =
+JSON.parse(
+localStorage.getItem("sales")
+) || [];
+
+let months = {};
+
+sales.forEach(s => {
+
+let m =
+s.date.substring(0,7);
+
+let profit =
+(s.price - s.cost)
+* s.quantity;
+
+if(!months[m]){
+
+months[m] = 0;
+
+}
+
+months[m] += profit;
+
+});
+
+let table =
+document.getElementById(
+"reportTable"
+);
+
+for(let m in months){
+
+let row =
+table.insertRow();
+
+row.insertCell(0)
+.innerHTML = m;
+
+row.insertCell(1)
+.innerHTML = months[m];
+
+}
+
+function back(){
+
+window.location =
+"index.html";
+
+}
+
+</script>
+
+</body>
+</html>

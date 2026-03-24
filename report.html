@@ -4,6 +4,8 @@
 <head>
 <title>Monthly Report</title>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <style>
 
 body{
@@ -22,6 +24,12 @@ background:white;
 th,td{
 border:1px solid black;
 padding:8px;
+}
+
+canvas{
+width:80%;
+max-width:600px;
+margin:20px auto;
 }
 
 button{
@@ -47,6 +55,8 @@ margin:10px;
 </tr>
 
 </table>
+
+<canvas id="chart"></canvas>
 
 <script>
 
@@ -81,6 +91,9 @@ document.getElementById(
 "reportTable"
 );
 
+let labels = [];
+let data = [];
+
 for(let m in months){
 
 let row =
@@ -92,7 +105,24 @@ row.insertCell(0)
 row.insertCell(1)
 .innerHTML = months[m];
 
+labels.push(m);
+data.push(months[m]);
+
 }
+
+new Chart(
+document.getElementById("chart"),
+{
+type:"bar",
+data:{
+labels:labels,
+datasets:[{
+label:"Profit",
+data:data
+}]
+}
+}
+);
 
 function back(){
 

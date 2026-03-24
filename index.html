@@ -2,68 +2,56 @@
 <html>
 
 <head>
-    <title>Eureca Daily Sales Tracker</title>
 
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+<title>Eureca Sales Tracker</title>
+
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<h1>Eureca Daily Sales Tracker</h1>
+<h2>Eureca Daily Sales Tracker</h2>
 
-<div class="container">
+Total Profit: R <span id="totalSales">0</span>
 
-<div id="totalBox">
-Total Profit: <span id="totalSales">0</span>
 <br><br>
-Monthly Profit: <span id="monthProfit">0</span>
-</div>
-
-<div class="form-box">
 
 <input id="product" placeholder="Product">
 
 <input id="quantity" placeholder="Quantity">
 
-<input id="price" placeholder="Price">
+<input id="cost" placeholder="Cost price">
+
+<input id="price" placeholder="Selling price">
+
+<input id="date" type="date">
+
+<br><br>
 
 <button onclick="addSale()">Add Sale</button>
 
-<button onclick="logout()">Logout</button>
-
 <button onclick="report()">Report</button>
 
-</div>
+<button onclick="logout()">Logout</button>
 
+<br><br>
 
-<table id="salesTable">
+<table id="salesTable" border="1">
 
 <tr>
 <th>Product</th>
 <th>Qty</th>
+<th>Cost</th>
 <th>Price</th>
-<th>Total</th>
+<th>Profit</th>
+<th>Date</th>
 <th>Action</th>
 </tr>
 
 </table>
 
-</div>
-
-<script>
-
-if(localStorage.getItem("login") != "true"){
-    window.location = "login.html";
-}
-
-function logout(){
-    localStorage.removeItem("login");
-    window.location = "login.html";
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,4 @@
 let totalProfit = 0;
-let monthProfit = 0;
 
 let savedSales =
 JSON.parse(localStorage.getItem("sales")) || [];
@@ -11,16 +10,19 @@ window.onload = function(){
 table =
 document.getElementById("salesTable");
 
-savedSales.forEach(s =>
+savedSales.forEach(s => {
+
 addRow(
 s.product,
 s.quantity,
 s.cost,
 s.price,
 s.date
-));
+);
 
-}
+});
+
+};
 
 function addSale(){
 
@@ -38,6 +40,8 @@ document.getElementById("price").value;
 
 let date =
 document.getElementById("date").value;
+
+if(product == "") return;
 
 savedSales.push({
 product,
@@ -61,6 +65,7 @@ date
 );
 
 }
+
 function addRow(
 product,
 quantity,
@@ -74,29 +79,53 @@ let profit =
 
 totalProfit += profit;
 
-let saleMonth =
-date.substring(0,7);
+document.getElementById(
+"totalSales"
+).innerText = totalProfit;
 
-let currentMonth =
-new Date().toISOString().substring(0,7);
+let row =
+table.insertRow();
 
-if(saleMonth == currentMonth){
-monthProfit += profit;
-}
+row.insertCell(0).innerHTML = product;
+row.insertCell(1).innerHTML = quantity;
+row.insertCell(2).innerHTML = cost;
+row.insertCell(3).innerHTML = price;
+row.insertCell(4).innerHTML = profit;
+row.insertCell(5).innerHTML = date;
+
+let btn =
+document.createElement("button");
+
+btn.innerText = "Delete";
+
+btn.onclick = function(){
+
+totalProfit -= profit;
 
 document.getElementById(
 "totalSales"
 ).innerText = totalProfit;
 
-document.getElementById(
-"monthProfit"
-).innerText = monthProfit;
+table.deleteRow(
+row.rowIndex
+);
+
+};
+
+row.insertCell(6).appendChild(btn);
+
+}
+
+function logout(){
+
+localStorage.removeItem("login");
+
+window.location = "login.html";
 
 }
 
 function report(){
 
-window.location =
-"report.html";
+window.location = "report.html";
 
 }

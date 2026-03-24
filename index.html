@@ -1,36 +1,65 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Eureca Daily Sales Tracker</title>
+
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
 </head>
 
 <body>
 
 <h1>Eureca Daily Sales Tracker</h1>
 
-<div class="form">
-    <input type="text" id="product" placeholder="Product Name">
-    <input type="number" id="quantity" placeholder="Quantity">
-    <input type="number" id="price" placeholder="Price">
+<div class="container">
 
-    <button onclick="addSale()">Add Sale</button>
+<div id="totalBox">
+Total Sales: R<span id="totalSales">0</span>
 </div>
 
-<h2>Sales List</h2>
+<div class="form-box">
 
-<h3>Total Sales Today: R<span id="totalSales">0</span></h3>
+<input id="product" placeholder="Product">
+
+<input id="quantity" placeholder="Quantity">
+
+<input id="price" placeholder="Price">
+
+<button onclick="addSale()">Add Sale</button>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
 
 <table id="salesTable">
+
 <tr>
 <th>Product</th>
-<th>Quantity</th>
+<th>Qty</th>
 <th>Price</th>
 <th>Total</th>
+<th>Action</th>
 </tr>
+
 </table>
 
-<script src="script.js"></script>
+</div>
+
+<script>
+
+if(localStorage.getItem("login") != "true"){
+    window.location = "login.html";
+}
+
+function logout(){
+    localStorage.removeItem("login");
+    window.location = "login.html";
+}
+
+</script>
 
 </body>
 </html>

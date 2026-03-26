@@ -11,33 +11,54 @@
 
 <body>
 
-<h2>Eureca Daily Sales Tracker</h2>
+<h1>Eureca Business Dashboard</h1>
 
-Total Profit: R <span id="totalSales">0</span>
+<div class="cards">
 
-<br><br>
+<div class="card">
+<h3>Total Profit</h3>
+<p id="totalSales">0</p>
+</div>
 
-<input id="product" placeholder="Product">
+<div class="card">
+<h3>Weekly Profit</h3>
+<p id="weekProfit">0</p>
+</div>
+
+<div class="card">
+<h3>Monthly Profit</h3>
+<p id="monthProfit">0</p>
+</div>
+
+</div>
+
+
+<div class="formBox">
+
+<select id="product">
+<option value="">Select Product</option>
+</select>
 
 <input id="quantity" placeholder="Quantity">
 
-<input id="cost" placeholder="Cost price">
+<input id="cost" placeholder="Cost">
 
-<input id="price" placeholder="Selling price">
+<input id="price" placeholder="Price">
 
 <input id="date" type="date">
-
-<br><br>
 
 <button onclick="addSale()">Add Sale</button>
 
 <button onclick="report()">Report</button>
 
+<button onclick="products()">Products</button>
+
 <button onclick="logout()">Logout</button>
 
-<br><br>
+</div>
 
-<table id="salesTable" border="1">
+
+<table id="salesTable">
 
 <tr>
 <th>Product</th>
@@ -50,6 +71,7 @@ Total Profit: R <span id="totalSales">0</span>
 </tr>
 
 </table>
+
 
 <script src="script.js"></script>
 

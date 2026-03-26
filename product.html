@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Product Manager</title>
+
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+background:#f2f2f2;
+}
+
+input{
+padding:8px;
+margin:5px;
+}
+
+button{
+padding:6px;
+margin:3px;
+}
+
+table{
+margin:auto;
+border-collapse:collapse;
+background:white;
+}
+
+td,th{
+border:1px solid black;
+padding:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Product Manager</h2>
+
+<input id="name" placeholder="Product name">
+
+<input id="cost" placeholder="Cost">
+
+<input id="price" placeholder="Price">
+
+<button onclick="addProduct()">
+Add Product
+</button>
+
+<button onclick="back()">
+Back
+</button>
+
+<br><br>
+
+<table id="productTable">
+
+<tr>
+<th>Name</th>
+<th>Cost</th>
+<th>Price</th>
+<th>Action</th>
+</tr>
+
+</table>
+
+<script>
+
+let products =
+JSON.parse(
+localStorage.getItem("products")
+) || [];
+
+let table =
+document.getElementById(
+"productTable"
+);
+
+showProducts();
+
+
+// ---------- SHOW ----------
+
+function showProducts(){
+
+table.innerHTML = `
+<tr>
+<th>Name</th>
+<th>Cost</th>
+<th>Price</th>
+<th>Action</th>
+</tr>
+`;
+
+products.forEach((p,i)=>{
+
+let row =
+table.insertRow();
+
+row.insertCell(0).innerHTML = p.name;
+row.insertCell(1).innerHTML = p.cost;
+row.insertCell(2).innerHTML = p.price;
+
+let actions =
+document.createElement("td");
+
+let del =
+document.createElement("button");
+
+del.innerText="Delete";
+
+del.onclick=function(){
+
+products.splice(i,1);
+
+save();
+
+};
+
+let edit =
+document.createElement("button");
+
+edit.innerText="Edit";
+
+edit.onclick=function(){
+
+document.getElementById("name").value = p.name;
+document.getElementById("cost").value = p.cost;
+document.getElementById("price").value = p.price;
+
+products.splice(i,1);
+
+save();
+
+};
+
+actions.appendChild(edit);
+actions.appendChild(del);
+
+row.appendChild(actions);
+
+});
+
+}
+
+
+// ---------- ADD ----------
+
+function addProduct(){
+
+let name =
+document.getElementById("name").value;
+
+let cost =
+document.getElementById("cost").value;
+
+let price =
+document.getElementById("price").value;
+
+if(name=="") return;
+
+products.push({
+name,
+cost,
+price
+});
+
+save();
+
+}
+
+
+// ---------- SAVE ----------
+
+function save(){
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
+
+showProducts();
+
+}
+
+
+// ---------- BACK ----------
+
+function back(){
+
+window.location =
+"index.html";
+
+}
+
+</script>
+
+</body>
+</html>

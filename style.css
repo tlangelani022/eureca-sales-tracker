@@ -1,68 +1,83 @@
 body{
-    font-family: Arial;
-    background:#f2f2f2;
-    margin:0;
+
+font-family:Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+
 }
 
 h1{
-    background:#0a3d62;
-    color:white;
-    padding:15px;
-    margin:0;
+
+margin-top:10px;
+
 }
 
-.container{
-    width:80%;
-    margin:auto;
-    margin-top:20px;
+.cards{
+
+display:flex;
+justify-content:center;
+gap:20px;
+margin:20px;
+
 }
 
-.form-box{
-    background:white;
-    padding:15px;
-    border-radius:10px;
-    box-shadow:0 0 5px gray;
+.card{
+
+background:#1e293b;
+padding:20px;
+border-radius:10px;
+width:150px;
+
 }
 
-input{
-    padding:10px;
-    margin:5px;
+.card p{
+
+font-size:22px;
+color:lime;
+
+}
+
+.formBox{
+
+margin:20px;
+
+}
+
+input,select,button{
+
+padding:8px;
+margin:5px;
+
 }
 
 button{
-    padding:10px;
-    background:#0a3d62;
-    color:white;
-    border:none;
-    cursor:pointer;
+
+background:#22c55e;
+border:none;
+color:white;
+cursor:pointer;
+
 }
 
 button:hover{
-    background:#3c6382;
+
+background:#16a34a;
+
 }
 
 table{
-    width:100%;
-    margin-top:20px;
-    border-collapse:collapse;
-    background:white;
+
+margin:auto;
+background:white;
+color:black;
+border-collapse:collapse;
+
 }
 
-th{
-    background:#0a3d62;
-    color:white;
-    padding:10px;
-}
+td,th{
 
-td{
-    padding:10px;
-    border:1px solid #ccc;
-}
+border:1px solid black;
+padding:8px;
 
-#totalBox{
-    background:white;
-    padding:10px;
-    margin-top:10px;
-    font-weight:bold;
-    box-shadow:0 0 5px gray;
 }

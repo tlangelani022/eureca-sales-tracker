@@ -1,3 +1,13 @@
+if(
+localStorage.getItem("login")
+!= "yes"
+){
+
+window.location =
+"login.html";
+
+}
+
 let totalProfit = 0;
 let weekProfit = 0;
 let monthProfit = 0;

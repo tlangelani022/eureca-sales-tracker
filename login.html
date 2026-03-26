@@ -2,113 +2,34 @@
 <html>
 
 <head>
+
 <title>Login</title>
 
-<style>
-
-body{
-    margin:0;
-    font-family:Arial;
-    background:#0a3d62;
-}
-
-.login-box{
-
-    width:300px;
-    margin:100px auto;
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    text-align:center;
-}
-
-input{
-
-    width:90%;
-    padding:10px;
-    margin:5px;
-}
-
-button{
-
-    width:95%;
-    padding:10px;
-    background:#0a3d62;
-    color:white;
-    border:none;
-}
-
-.link{
-
-    display:block;
-    margin-top:10px;
-    cursor:pointer;
-    color:#0a3d62;
-
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<div class="login-box">
+<h1>Eureca Login</h1>
 
-<h2>Eureca Login</h2>
+<div class="formBox">
 
-<input id="user" placeholder="Username">
+<input id="username" placeholder="Username">
 
-<input id="pass" type="password" placeholder="Password">
+<input id="password" type="password" placeholder="Password">
 
-<button onclick="login()">Login</button>
+<br>
 
-<span class="link" onclick="forgot()">Forgot Password</span>
+<button onclick="login()">
+Login
+</button>
 
-<span class="link" onclick="changePage()">Change Password</span>
+<p id="msg"></p>
 
 </div>
 
-<script>
-
-let savedPass =
-localStorage.getItem("pass") || "1234";
-
-function login(){
-
-let u =
-document.getElementById("user").value;
-
-let p =
-document.getElementById("pass").value;
-
-if(u=="admin" && p==savedPass){
-
-localStorage.setItem("login","true");
-
-window.location="index.html";
-
-}else{
-
-alert("Wrong login");
-
-}
-
-}
-
-function forgot(){
-
-alert("Contact admin");
-
-}
-
-function changePage(){
-
-window.location="changePassword.html";
-
-}
-
-</script>
+<script src="login.js"></script>
 
 </body>
 </html>
